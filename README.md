@@ -1,15 +1,19 @@
 # CineFlix-GPT (Netflix Clone)
+
 ## Features
+
 ### 1. **Login/Signup Page**
-    -**Login/Signup Form**
-    -**Redirect to Browse Page**
+   - Login/Signup Form
+   - Redirect to Browse Page after successful authentication
+
 ### 2. **Browse Page (Post-Authentication)**
-    -**Header**
-    -**Main Movie Section**:
-        -**Trailer in Background**
-        -**Title & Description**
-        -**Movie Suggestions**
-            -**Movie Lists * N**
+   - **Header**
+   - **Main Movie Section:**
+     - Trailer in the Background
+     - Movie Title & Description
+     - **Movie Suggestions:**
+       - Multiple Movie Lists (N)
+
 ### 3. **GPT-Powered Movie Suggestions**
-    -**Search Bar**
-    -**Movie Suggestions**
+   - Search Bar for searching movies
+   - Movie Suggestions powered by GPT
