@@ -1,13 +1,29 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import Header from './Header'
 import NetflixBackgroundImg from '../assets/Netflix_background_large.jpg'
+import { checkValidData } from '../utils/Validate';
 
 const Login = () => {
   // for toggling feature
-  const [isSignUp, setIsSignUp] =useState();   //initially setting as true, like the user has already signed up he can directly sign in.
+  const [isSignUp, setIsSignUp] =useState(true);   //initially setting as true, like the user has already signed up he can directly sign in.
+  const [errorMessage, setErrorMessage]=useState(null);
+  
+  const fullName = useRef(null);
+  const email = useRef(null);
+  const password =useRef(null);
 
-  function handleClick(){
-    event.preventDefault();  // Prevent the form from submitting
+  
+  function handleButtonClick(){
+    // form validation
+    const errorMsg = isSignUp
+        ? checkValidData(null, email.current.value, password.current.value)
+        : checkValidData(fullName.current.value, email.current.value, password.current.value);    // in signin form the fullname filed is no there so it should be NULL.
+    setErrorMessage(errorMsg);
+  }
+
+  // for toggling Sign In/Sign Up
+  function handleToggleSignIn(e){      
+    e.preventDefault();  // Prevent the form from submitting
     setIsSignUp(!isSignUp);  //it will toggle
   }
 
@@ -21,14 +37,19 @@ const Login = () => {
 
       <div className='relative flex'>
 
-        <form className=' px-14 py-12 my-22 mx-136 bg-black/80 w-7/12 h-auto rounded-md flex flex-col'>
+        <form onSubmit={(e)=>e.preventDefault()} className=' px-14 py-12 my-22 mx-136 bg-black/80 w-7/12 h-auto rounded-md flex flex-col'>
           <h1 className='font-bold text-white text-4xl mb-4 mt-1 text-left'>{isSignUp ? "Sign In" : "Sign Up"}</h1>
           <div className='flex flex-col justify-center items-center'>
 
-          {isSignUp ? "" : <input type='email' placeholder='Full Name' className='p-4 mt-4 mx-1.8 w-full border-gray-400 border-1 rounded-md z-2 text-white cursor-text'></input>}
-          <input type='email' placeholder='Enter Email' className='p-4 mt-4 mx-1.8 w-full border-gray-400 border-1 rounded-md z-2 text-white cursor-text'></input>
-          <input type='password' placeholder='Password' className='p-4 my-4 mx-1.8 w-full border-gray-400 border-1 rounded-md  z-2 text-white cursor-text'></input>
-          <button className='p-2 w-full text-white bg-red-600 h-10 rounded-md text-center z-2 cursor-pointer hover:bg-red-700' onClick={handleClick}>{isSignUp ? "Sign In" : "Sign Up"}</button>
+          {isSignUp ? "": <input ref={fullName} type='text' placeholder='Full Name' className='p-4 mt-4 mx-1.8 w-full border-gray-400 border-1 rounded-md z-2 text-white cursor-text'></input>}
+          <input ref={email} type='email' placeholder='Enter Email' className='p-4 mt-4 mx-1.8 w-full border-gray-400 border-1 rounded-md z-2 text-white cursor-text'></input>
+          <input ref={password} type='password' placeholder='Password' className='p-4 mt-4 mx-1.8 w-full border-gray-400 border-1 rounded-md  z-2 text-white cursor-text'></input>
+          
+          <p className='my-4 text-red-400 text-left'>{errorMessage}</p>
+          
+          <button className='p-2 w-full text-white bg-red-600 h-10 rounded-md text-center z-2 cursor-pointer hover:bg-red-700' onClick={handleButtonClick}>{isSignUp ? "Sign In" : "Sign Up"}</button>
+        
+        
 
           {!isSignUp ? ("") : (
             <>
@@ -45,9 +66,8 @@ const Login = () => {
           </label>
 
           {isSignUp ?
-            <p className='my-2 text-gray-400 -ml-28'>New to Netflix? <span className='text-white hover:underline cursor-pointer' onClick={handleClick}>Sign Up Now</span></p> : <p className='my-2 text-gray-400 -ml-28'>Already an User? <span className='text-white hover:underline cursor-pointer' onClick={handleClick}>Sign In Now</span></p>}
+            <p className='my-2 text-gray-400 -ml-28'>New to Netflix? <span className='text-white hover:underline cursor-pointer' onClick={handleToggleSignIn}>Sign Up Now</span></p> : <p className='my-2 text-gray-400 -ml-28'>Already an User? <span className='text-white hover:underline cursor-pointer' onClick={handleToggleSignIn}>Sign In Now</span></p>}
           
-
           {/* <p className='my-4 ml-0.4 text-wrap text-xs text-gray-400'>This page is protected by Google reCAPTCHA to ensure you're not a bot. <span className='text-blue-500 text-sm hover:underline'>Learn More</span></p> */}
 
           </div>

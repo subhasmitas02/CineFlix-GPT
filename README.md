@@ -1,7 +1,9 @@
 # CineFlix-GPT (Netflix Clone)
    -Create React App & Tailwind CSS
    -Header
+   -Routing of App
    -Login Page (Sign In / Sign Up Form)
+   -Form Validation
 
 
 ## Features
