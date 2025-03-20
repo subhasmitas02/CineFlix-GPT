@@ -1,11 +1,11 @@
 import React, { useState, useRef } from 'react'
 import Header from './Header'
 import NetflixBackgroundImg from '../assets/Netflix_background_large.jpg'
-import { checkValidData } from '../utils/Validate';
+import { checkValidDataforSignIn, checkValidDataforSignUp } from '../utils/Validate';
 
 const Login = () => {
   // for toggling feature
-  const [isSignUp, setIsSignUp] =useState(true);   //initially setting as true, like the user has already signed up he can directly sign in.
+  const [isSignUp, setIsSignUp] = useState(true);   //initially setting as true, like the user has already signed up he can directly sign in.
   const [errorMessage, setErrorMessage]=useState(null);
   
   const fullName = useRef(null);
@@ -16,8 +16,8 @@ const Login = () => {
   function handleButtonClick(){
     // form validation
     const errorMsg = isSignUp
-        ? checkValidData(null, email.current.value, password.current.value)
-        : checkValidData(fullName.current.value, email.current.value, password.current.value);    // in signin form the fullname filed is no there so it should be NULL.
+        ? checkValidDataforSignIn(email.current.value, password.current.value)
+        : checkValidDataforSignUp(fullName.current.value, email.current.value, password.current.value);    // in signin form the fullname filed is no there so it should be NULL.
     setErrorMessage(errorMsg);
   }
 
