@@ -2,15 +2,19 @@ import React, { useState, useRef } from 'react'
 import Header from './Header'
 import NetflixBackgroundImg from '../assets/Netflix_background_large.jpg'
 import { checkValidDataforSignIn, checkValidDataforSignUp } from '../utils/Validate';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-import { auth} from "../utils/Firebase";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { auth } from "../utils/Firebase";
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 const Login = () => {
   // for toggling feature
   const [isSignUp, setIsSignUp] = useState(true);   //initially setting as true, like the user has already signed up he can directly sign in.
   const [errorMessage, setErrorMessage]=useState(null);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   
-  const fullName = useRef(null);
+  const name = useRef(null);
   const email = useRef(null);
   const password =useRef(null);
 
@@ -19,7 +23,7 @@ const Login = () => {
     // form validation
     const message = isSignUp
         ? checkValidDataforSignIn(email.current.value, password.current.value)
-        : checkValidDataforSignUp(fullName.current.value, email.current.value, password.current.value);    // in signin form the fullname filed is no there so it should be NULL.
+        : checkValidDataforSignUp(name.current.value, email.current.value, password.current.value);    // in signin form the fullname filed is no there so it should be NULL.
     setErrorMessage(message);
 
     if (message) {  
@@ -35,8 +39,24 @@ const Login = () => {
         .then((userCredential) => {
            // Signed up 
            const user = userCredential.user;
+           updateProfile(user, {
+                displayName: name.current.value, 
+                photoURL: "https://example.com/jane-q-user/profile.jpg"
+              }).then(() => {
+               // Profile updated!
+                const { uid, email, displayName, photoURL } = auth.currentUser;
+                dispatch(
+                  addUser({uid:uid, email: email, displayName: displayName, photoURL: photoURL})
+                );
+                navigate("/browse");
+              }).catch((error) => {
+                setErrorMessage(error.message);
+            
+          });
+
            console.log("after signing up:", user);
-           //console.log(user);
+           console.log(user);
+           navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -53,6 +73,7 @@ const Login = () => {
       .then((userCredential) => {
         const user = userCredential.user;
         console.log(user);
+        navigate("/browse");
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -85,7 +106,7 @@ const Login = () => {
           <h1 className='font-bold text-white text-4xl mb-4 mt-1 text-left'>{isSignUp ? "Sign In" : "Sign Up"}</h1>
           <div className='flex flex-col justify-center items-center'>
 
-          {isSignUp ? "": <input ref={fullName} type='text' placeholder='Full Name' className='p-4 mt-4 mx-1.8 w-full border-gray-400 border-1 rounded-md z-2 text-white cursor-text'></input>}
+          {isSignUp ? "": <input ref={name} type='text' placeholder='Full Name' className='p-4 mt-4 mx-1.8 w-full border-gray-400 border-1 rounded-md z-2 text-white cursor-text'></input>}
           <input ref={email} type='email' placeholder='Enter Email' className='p-4 mt-4 mx-1.8 w-full border-gray-400 border-1 rounded-md z-2 text-white cursor-text'></input>
           <input ref={password} type='password' placeholder='Password' className='p-4 mt-4 mx-1.8 w-full border-gray-400 border-1 rounded-md  z-2 text-white cursor-text'></input>
           
@@ -104,7 +125,7 @@ const Login = () => {
           )}
 
           {/*adding Check box------*/}
-          <label class="flex items-center space-x-2 -ml-47 my-3">
+          <label className="flex items-center space-x-2 -ml-47 my-3">
             <input type="checkbox" class="form-checkbox h-4 w-4 text-black cursor-pointer" />
             <span className='text-white '>Remember Me</span>
           </label>

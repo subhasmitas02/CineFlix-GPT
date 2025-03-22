@@ -8,6 +8,9 @@
    -Firebase Setup
    -Deploying to Production
    -Create a Sign Up User Account
+   -Cretaed Redux Store with userSlice
+   -Implemented Sign Out
+   -Update Profile
 
 ## Features
 
