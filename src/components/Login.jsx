@@ -2,6 +2,8 @@ import React, { useState, useRef } from 'react'
 import Header from './Header'
 import NetflixBackgroundImg from '../assets/Netflix_background_large.jpg'
 import { checkValidDataforSignIn, checkValidDataforSignUp } from '../utils/Validate';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { auth} from "../utils/Firebase";
 
 const Login = () => {
   // for toggling feature
@@ -15,10 +17,52 @@ const Login = () => {
   
   function handleButtonClick(){
     // form validation
-    const errorMsg = isSignUp
+    const message = isSignUp
         ? checkValidDataforSignIn(email.current.value, password.current.value)
         : checkValidDataforSignUp(fullName.current.value, email.current.value, password.current.value);    // in signin form the fullname filed is no there so it should be NULL.
-    setErrorMessage(errorMsg);
+    setErrorMessage(message);
+
+    if (message) {  
+      setErrorMessage(message);
+      return;
+    }
+
+
+    //Sign Up Logic------------
+    if(!isSignUp) 
+    {
+        createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
+        .then((userCredential) => {
+           // Signed up 
+           const user = userCredential.user;
+           console.log("after signing up:", user);
+           //console.log(user);
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMessage(errorCode + " - " + errorMessage);
+        });
+
+    }
+
+    //Sign In Logic
+    else{   
+      console.log("Attempting sign-in with:", email.current.value, password.current.value);
+      signInWithEmailAndPassword(auth, email.current.value, password.current.value)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        setErrorMessage(errorCode + " - " + errorMessage);
+      });
+
+    }
+
+    
   }
 
   // for toggling Sign In/Sign Up

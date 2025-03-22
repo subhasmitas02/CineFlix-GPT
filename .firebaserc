@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "cineflixgpt-77ffb"
-  }
+    "default": "test-10bb7",
+    "testing": "test-10bb7"
+  },
+  "targets": {},
+  "etags": {}
 }

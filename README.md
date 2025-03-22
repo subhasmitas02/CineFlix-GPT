@@ -4,7 +4,10 @@
    -Routing of App
    -Login Page (Sign In / Sign Up Form)
    -Form Validation
-
+   -useRef Hook
+   -Firebase Setup
+   -Deploying to Production
+   -Create a Sign Up User Account
 
 ## Features
 
