@@ -1,17 +1,16 @@
 import React, { useState, useRef } from 'react'
 import Header from './Header'
 import NetflixBackgroundImg from '../assets/Netflix_background_large.jpg'
+import { PROFILE_ICON } from '../utils/constants';
 import { checkValidDataforSignIn, checkValidDataforSignUp } from '../utils/Validate';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../utils/Firebase";
-import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 const Login = () => {
   // for toggling feature
   const [isSignUp, setIsSignUp] = useState(true);   //initially setting as true, like the user has already signed up he can directly sign in.
   const [errorMessage, setErrorMessage]=useState(null);
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   
   const name = useRef(null);
@@ -41,14 +40,14 @@ const Login = () => {
            const user = userCredential.user;
            updateProfile(user, {
                 displayName: name.current.value, 
-                photoURL: "https://example.com/jane-q-user/profile.jpg"
+                photoURL: PROFILE_ICON,
               }).then(() => {
                // Profile updated!
                 const { uid, email, displayName, photoURL } = auth.currentUser;
                 dispatch(
                   addUser({uid:uid, email: email, displayName: displayName, photoURL: photoURL})
                 );
-                navigate("/browse");
+                
               }).catch((error) => {
                 setErrorMessage(error.message);
             
@@ -56,7 +55,6 @@ const Login = () => {
 
            console.log("after signing up:", user);
            console.log(user);
-           navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -68,12 +66,10 @@ const Login = () => {
 
     //Sign In Logic
     else{   
-      console.log("Attempting sign-in with:", email.current.value, password.current.value);
       signInWithEmailAndPassword(auth, email.current.value, password.current.value)
       .then((userCredential) => {
         const user = userCredential.user;
         console.log(user);
-        navigate("/browse");
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -126,7 +122,7 @@ const Login = () => {
 
           {/*adding Check box------*/}
           <label className="flex items-center space-x-2 -ml-47 my-3">
-            <input type="checkbox" class="form-checkbox h-4 w-4 text-black cursor-pointer" />
+            <input type="checkbox" className="form-checkbox h-4 w-4 text-black cursor-pointer" />
             <span className='text-white '>Remember Me</span>
           </label>
 
