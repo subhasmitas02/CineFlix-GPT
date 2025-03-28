@@ -1,4 +1,4 @@
-# CineFlix-GPT (Netflix Clone)
+# CineFlix-GPT 
    - Create React App & Tailwind CSS
    - Header
    - Routing of App
