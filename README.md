@@ -1,22 +1,22 @@
 # CineFlix-GPT (Netflix Clone)
-   -Create React App & Tailwind CSS
-   -Header
-   -Routing of App
-   -Login Page (Sign In / Sign Up Form)
-   -Form Validation
-   -useRef Hook
-   -Firebase Setup
-   -Deploying to Production
-   -Create a Sign Up User Account
-   -Cretaed Redux Store with userSlice
-   -Implemented Sign Out
-   -Update Profile
-   -BugFix: Sign up user displayName
-   -BugFix: if the user isn't logged in Redirect /browse to Login Page and vice-versa
-   -Unsubscribed to the onAuthStateChanged callback
-   -Added Hardcoded values to the constants file
-   -Registered TMDB API & created an app & get access token
-   -Get data from TMDB now playing movies list API
+   - Create React App & Tailwind CSS
+   - Header
+   - Routing of App
+   - Login Page (Sign In / Sign Up Form)
+   - Form Validation
+   - useRef Hook
+   - Firebase Setup
+   - Deploying to Production
+   - Create a Sign Up User Account
+   - Cretaed Redux Store with userSlice
+   - Implemented Sign Out
+   - Update Profile
+   - BugFix: Sign up user displayName
+   - BugFix: if the user isn't logged in Redirect /browse to Login Page and vice-versa
+   - Unsubscribed to the onAuthStateChanged callback
+   - Added Hardcoded values to the constants file
+   - Registered TMDB API & created an app & get access token
+   - Get data from TMDB now playing movies list API
 
 ## Features
 
