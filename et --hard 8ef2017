@@ -1,0 +1,34 @@
+[33m208be51[m[33m ([m[1;36mHEAD[m[33m, [m[1;31morigin/main[m[33m)[m HEAD@{0}: pull origin main --rebase (start): checkout 208be5118ab53402104bc8c4825e772e8590b3d9
+[33m8ef2017[m[33m ([m[1;32mmain[m[33m)[m HEAD@{1}: rebase (finish): returning to refs/heads/main
+[33m8ef2017[m[33m ([m[1;32mmain[m[33m)[m HEAD@{2}: commit: Built Main Container
+[33mc4a143e[m HEAD@{3}: commit: Update README.md
+[33mebfd413[m HEAD@{4}: commit: Added the trailer
+[33m4640603[m HEAD@{5}: pull origin main --rebase (start): checkout 4640603ca5e1756e48cd4c4d8c8a19c2c25e5c21
+[33m208be51[m[33m ([m[1;36mHEAD[m[33m, [m[1;31morigin/main[m[33m)[m HEAD@{6}: commit: Added the trailer
+[33m1adceb6[m HEAD@{7}: commit: TMDB API Data fetch & Custom Hook creation
+[33m08a5e3a[m HEAD@{8}: commit: Fixed minor bugs
+[33mb8bb7cb[m HEAD@{9}: commit: Validation && Setup Redux Store && auth
+[33mb11427e[m HEAD@{10}: commit: Set Up Firebase Authentication
+[33me420bef[m HEAD@{11}: reset: moving to HEAD~2
+[33ma52546a[m HEAD@{12}: commit: Set Up Firebase Authentication
+[33me8a30eb[m HEAD@{13}: reset: moving to HEAD~1
+[33mfedd9b0[m HEAD@{14}: commit: Remove .env file from tracking
+[33me8a30eb[m HEAD@{15}: commit: Set Up Firebase Authentication
+[33me420bef[m HEAD@{16}: commit: Update in Sign In
+[33mefcf4ba[m HEAD@{17}: reset: moving to HEAD~2
+[33ma023930[m HEAD@{18}: reset: moving to HEAD
+[33ma023930[m HEAD@{19}: rebase (finish): returning to refs/heads/main
+[33ma023930[m HEAD@{20}: rebase (start): checkout a023930
+[33ma023930[m HEAD@{21}: reset: moving to HEAD
+[33ma023930[m HEAD@{22}: commit: Made changes after rebase
+[33m9cbb45e[m HEAD@{23}: rebase (finish): returning to refs/heads/main
+[33m9cbb45e[m HEAD@{24}: rebase (finish): refs/heads/main onto 9cbb45ec50bbda03dae558053c5dc7c6edbdf3e5
+[33m9cbb45e[m HEAD@{25}: reset: moving to HEAD
+[33m9cbb45e[m HEAD@{26}: commit: Update Sign In
+[33mefcf4ba[m HEAD@{27}: commit: Update Sign In page
+[33m65f1748[m HEAD@{28}: commit: Header/Login Page & Sign In/ Sign Up Form
+[33md7b75a1[m HEAD@{29}: commit: Update README.md
+[33m03965c4[m HEAD@{30}: commit: Update README.md
+[33mf86ee89[m HEAD@{31}: commit: Update README.md
+[33m9e6ce24[m HEAD@{32}: Branch: renamed refs/heads/master to refs/heads/main
+[33m9e6ce24[m HEAD@{34}: commit (initial): Add initial project setup
